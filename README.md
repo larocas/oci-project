@@ -2,6 +2,8 @@
 
 This project will create a WebServer for the project Dropwizard to run in Oracle Cloud. It will also create all the necessary resources to support this project such as Load Balancers, Bastion Server, Grafana and Prometheus, etc.
 
+<img width="494" alt="image" src="https://github.com/larocas/oci-project/assets/139692500/b0b076d4-2df4-4aba-9779-55bfdacff935">
+
 ## Infrastructure development
 Create the underlying infrastructure of this project:
 ```
@@ -20,7 +22,6 @@ terraform init
 terraform plan
 terraform apply
 ```
-
 ## Application Development 
 
 We will be running a Dropwizard Java application. The Dropwizard example application was developed to, as its name implies, provide examples of some of the features present in Dropwizard. Im going to be following the doc on [dropwizard-example](https://github.com/dropwizard/dropwizard/tree/master/dropwizard-example).
