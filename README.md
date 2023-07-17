@@ -76,7 +76,8 @@ scrape_configs:
     static_configs:
       - targets: ['docker-host:9323']
 ```
-*Note:* To see the IP address of a docker container you can run this command: ```docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'  <ContainerID>'''
+*Note:* To see the IP address of a docker container you can run this command: ```docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'  <ContainerID>```
+
 Now run the Grafana and Prometheus Containers:
 ```
 docker run -d -p 3000:3000 --name=grafana grafana/grafana-oss
