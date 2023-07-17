@@ -44,6 +44,7 @@ docker push larocasdelcastillo/luis-oracle-dropwizard:latest
 ## Deploy the Application
 First, ssh into the web server and install all necessary components to run Docker in the Server:
 ```
+scp -i opc.pem opc.pem opc@<BastionPublicIP>:~
 ssh -i opc.pem opc@<BastionPublicIP>
 ssh -i opc.pem opc@<WebServerPrivateIP>
 yum-config-manager --enable ol7_addons 
