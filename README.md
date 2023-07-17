@@ -88,3 +88,22 @@ You will be able to access both Prometheus and Grafana at the links below:
 - ```http://<PrometheusLBIP>/graph```
 
 Log into Grafana and Add as Data Sources both Prometheus and Oracle Cloud Metrics.
+
+## Extra Development
+
+How to code the Fibonacci Series (The fubonacci numer is the sumation of the two previous number of the series). There are many ways to do it but one of the most common ways is using a recursive implementation:
+
+- If n is not less than 1, then call recursively the previous two numbers:
+- If n reaches 1, then return 1.
+
+```
+public class FibonacciSeries {
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2);
+        }
+    }
+}
+```
