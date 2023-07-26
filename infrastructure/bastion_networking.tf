@@ -11,7 +11,7 @@ resource "oci_core_subnet" "bastion_subnet" {
   vcn_id              = oci_core_vcn.bastion_vcn.id
   display_name        = "BastionSubnet"
   compartment_id      = var.tenancy_ocid
-  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   route_table_id = "${oci_core_route_table.bastion_route_table.id}"
   security_list_ids = [oci_core_security_list.bastion_security_list.id]
 }

@@ -11,7 +11,7 @@ resource "oci_core_subnet" "private_subnet" {
   vcn_id              = oci_core_vcn.vcn.id
   display_name        = "PrivateSubnet"
   compartment_id      = var.tenancy_ocid
-  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   route_table_id = "${oci_core_route_table.private_route_table.id}"
   security_list_ids = [oci_core_security_list.web_security_list.id]
 }
@@ -22,7 +22,7 @@ resource "oci_core_subnet" "public_subnet" {
   vcn_id              = oci_core_vcn.vcn.id
   display_name        = "PublicSubnet"
   compartment_id      = var.tenancy_ocid
-  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
   route_table_id = "${oci_core_route_table.route_table.id}"
   security_list_ids = [oci_core_security_list.web_security_list.id]
 }

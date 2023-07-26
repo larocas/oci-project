@@ -36,7 +36,8 @@ resource "oci_core_network_security_group_security_rule" "web_security_rule" {
   network_security_group_id = oci_core_network_security_group.webserver_security_group.id
   direction                 = "INGRESS"
   protocol                  = "6"  # TCP
-  # source                    = var.subnet_cidr_block
+  #source                    = var.subnet_cidr_block
+  #source                    = "0.0.0.0/0"
   source =  oci_core_network_security_group.loadbalancer_security_group.id
   tcp_options {
     destination_port_range {
@@ -50,6 +51,7 @@ resource "oci_core_network_security_group_security_rule" "grafana_security_rule"
   network_security_group_id = oci_core_network_security_group.webserver_security_group.id
   direction                 = "INGRESS"
   protocol                  = "6"  # TCP
+  #source                    = "0.0.0.0/0"
   source                    = oci_core_network_security_group.loadbalancer_security_group.id
   tcp_options {
     destination_port_range {
@@ -63,6 +65,7 @@ resource "oci_core_network_security_group_security_rule" "prometheu_security_rul
   network_security_group_id = oci_core_network_security_group.webserver_security_group.id
   direction                 = "INGRESS"
   protocol                  = "6"  # TCP
+  # source                    = "0.0.0.0/0"
   source                    = oci_core_network_security_group.loadbalancer_security_group.id
   tcp_options {
     destination_port_range {

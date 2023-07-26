@@ -1,7 +1,7 @@
 # Web server
 resource "oci_core_instance" "appserver_instance" {
   compartment_id         = var.tenancy_ocid
-  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   shape                  = var.instance_shape
 
   source_details {
@@ -21,7 +21,7 @@ resource "oci_core_instance" "appserver_instance" {
 # Create an instance for the bastion server
 resource "oci_core_instance" "bastion_instance" {
   compartment_id         = var.tenancy_ocid
-  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   shape                  = var.instance_shape
   create_vnic_details {
     subnet_id = oci_core_subnet.bastion_subnet.id

@@ -9,3 +9,8 @@ provider "oci" {
 data "oci_identity_availability_domains" "ADs" {
     compartment_id = "${var.tenancy_ocid}"
 }
+
+# data "oci_core_instance" "test_instance" {
+#     #Required
+#     instance_id = "ocid1.instance.oc1.iad.anuwcljtgdxeylaczhh2vcgpawhv7rfowoysb3fomhzp6jpxz6zicwhrsbla"
+# }
