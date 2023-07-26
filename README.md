@@ -59,7 +59,7 @@ systemctl enable docker
 Next, add the following code to the file /etc/docker/daemon.json to expose Docker metrics and restart the Docker Daemon:
 ```
 {
-  "metrics-addr" : "0.0.0.0:9323",
+  "metrics-addr" : "0.0.0.0:9999",
   "experimental" : true
 }
 ```
@@ -68,8 +68,8 @@ Now you can run the application using the command below:
 docker run -d -p 8080:8080  -it larocasdelcastillo/luis-oracle-dropwizard
 ```
 The application will be accessible at: 
-- ```http://<WebServerIP>/hello-world```
-- ```http://<WebServerIP>/people```
+- ```http://<WebServerLBIP>/hello-world```
+- ```http://<WebServerLBIP>/people```
   
 You can interact with the application like this: ```curl -H "Content-Type: application/json" -X POST -d '{"fullName":"Luis Arocas","jobTitle":"DevOps"}' http://<WebServerIP>/people```
 ## Install Grafana and Prometheus for Monitoring
@@ -78,20 +78,23 @@ Create a Prometheus config file prometheus.yml with the following content to col
 scrape_configs:
   - job_name: 'docker'
     static_configs:
-      - targets: ['docker-host:9323']
+      - targets: ['127.0.0.1:9999']
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
 ```
 *Note:* To see the IP address of a Docker container, you can run this command: ```docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'  <ContainerID>```
 
 Now run the Grafana and Prometheus Containers:
 ```
-docker run -d -p 3000:3000 --name=grafana grafana/grafana-oss
+docker run -d -p 3000:3000 --name=grafana grafana/grafana:8.2.6
 docker run -d -p 9090:9090 -v /home/opc/prometheus.yml:/etc/prometheus/prometheus.yml quay.io/prometheus/prometheus
 ```
 You will be able to access both Prometheus and Grafana at the links below:
 - ```http://<GrafanaLBIP>/login```
 - ```http://<PrometheusLBIP>/graph```
 
-Log into Grafana and add both Prometheus and Oracle Cloud Metrics as data sources.
+Log into Grafana and add both Prometheus and Oracle Cloud Metrics as data sources. Create a dashboard with the Metrics available.
 
 ## Extra Development
 
